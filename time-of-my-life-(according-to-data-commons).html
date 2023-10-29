@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>time of my life (according to data commons)</title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+    }
+    #container{
+      height: 100%;
+      width: 100%;
+      margin: auto;
+    }
+    #bar-chart {
+      height: 100%;
+    }
+    #life-spent{
+      background-color: var(--life-spent-color);
+      color: var(--life-spent-text-color);
+    }
+    #life-left{
+      background-color: var(--life-left-color);
+      color: var(--life-left-text-color);
+    }
+    #text {
+      width: 60%;
+      margin: auto;
+      display: none;
+    }
+ 
+    #toggle p{
+      position: fixed;
+      bottom: 0px;
+      left: 0px;
+      margin: 1rem;
+      padding: 5px;
+      font-size: 2rem;
+      color: var(--life-left-text-color);
+      background-color: var(--life-left-color);
+      cursor: pointer;
+    }
+    p {
+      padding: 5px 5px 0;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 2.2rem;
+    }
+    .medium {
+      font-size: 2rem;
+    }
+    li{
+      list-style-type: upper-roman;
+      margin: 3rem 0;
+    }
+    span.nowrap {
+      white-space: nowrap;
+    }
+    a {
+      color: black;
+    }
+    .data {
+      font-style: italic;
+    }
+    .spent {
+      padding: 0 5px;
+      background-color: var(--life-spent-color);
+      color: var(--life-spent-text-color);
+    }
+    .left {
+      background-color: var(--life-left-color);
+      color: var(--life-left-text-color);
+      padding: 0 5px;
+    }
+    :root {
+      --life-spent-color: white;
+      --life-spent-text-color: black;
+      --life-left-color: black;
+      --life-left-text-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="bar-chart">
+      <div id="life-spent"></div>
+      <div id="life-left"></div>
+    </div>
+    <div id="text">
+      <h1 id="title">time of my life</h1>
+      <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span> So, today (<span id="today" class="data"></span>) I spent about <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. So, that means I have <span id="percentage-left" class="data left"></span> or <span id="years-left" class="data left"></span> years left, which is <span id="days-left" class="data left"></span> days.</p>
+      <p class="data medium">seconds I have left:</p>
+      <h2 id="seconds-left" class="data">seconds-left</h2>
+    </div>
+    <div id="toggle"><p id="toggle-text">></p></div>
+  </div>
+  <script>
+    const  birthDate = Date.parse("18 dec 1985")
+    const birthDateElement = document.getElementById('birth-date')
+    birthDateElement.innerText = new Date(birthDate).toLocaleDateString()
+    const lifeExpectancyInYearsAccordingToDataCommons = 79.7
+
+    const lifeExpectancyYearsElement = document.getElementById('life-expectancy-years')
+    lifeExpectancyYearsElement.innerText = lifeExpectancyInYearsAccordingToDataCommons
+    const lifeExpectancyInMillisecondsAccordingToDataCommons = lifeExpectancyInYearsAccordingToDataCommons * 365.25 * 24 * 60 * 60 * 1000
+    const deathDateAccordingToDataCommons = birthDate + lifeExpectancyInMillisecondsAccordingToDataCommons
+
+    const todaysDate = new Date(Date.now()).toLocaleDateString()
+    const today = document.getElementById('today')
+    today.innerText = todaysDate
+
+    const millisecondsSpent = Date.now()-birthDate
+    const daysSpent = Math.round(millisecondsSpent / 1000 / 60 / 60 / 24)
+    const daysSpentElement = document.getElementById('days-spent')
+    daysSpentElement.innerText = Math.round(daysSpent).toLocaleString()
+
+    const expectedTotalLifeInMilliseconds = deathDateAccordingToDataCommons - birthDate
+    let lifeLeftInMilliseconds = expectedTotalLifeInMilliseconds - millisecondsSpent
+    const expectedDaysLeft = Math.round(lifeLeftInMilliseconds / 1000 / 60 / 60 / 24)
+    const lifeSpentExpectedFraction = millisecondsSpent/expectedTotalLifeInMilliseconds
+
+    const lifeSpentExpectedPercentage = (lifeSpentExpectedFraction*100).toFixed(2)
+
+    const lifeLeftExpectedFraction = 1 - lifeSpentExpectedFraction
+    const lifeLeftExpectedPercentage = (lifeLeftExpectedFraction*100).toFixed(2)
+
+    const lifeLeft = window.document.getElementById('life-left')
+    const lifeSpent = window.document.getElementById('life-spent')
+    lifeLeft.style.height = `${lifeLeftExpectedPercentage}%`
+    lifeSpent.style.height = `${100 - lifeLeftExpectedPercentage}%`
+
+    const percentageSpent = document.getElementById('percentage-spent')
+    percentageSpent.innerText = `${lifeSpentExpectedPercentage}%`
+    const percentageLeft = document.getElementById('percentage-left')
+    percentageLeft.innerText = `${lifeLeftExpectedPercentage}%`
+    const daysLeft = document.getElementById('days-left')
+    daysLeft.innerText = expectedDaysLeft.toLocaleString()
+    const yearsLeft = document.getElementById('years-left')
+    yearsLeft.innerText = (expectedDaysLeft / 365.25).toFixed(2)
+
+    // life left in seconds
+    const interval = 1000
+
+    function setLifeLeftInSeconds() {
+      lifeLeftInMilliseconds -= interval
+      const secondsLeft = document.getElementById('seconds-left')
+      secondsLeft.innerText = Math.floor(lifeLeftInMilliseconds / 1000).toLocaleString()
+    }
+    setInterval(setLifeLeftInSeconds, 1000)
+
+    // toggle
+    const toggle = document.getElementById('toggle')
+    const toggleText = document.getElementById('toggle-text')
+    toggle.addEventListener('click', function(){
+      const barChart = document.getElementById('bar-chart')
+      const text = document.getElementById('text')
+      if (barChart.style.display === 'none'){
+        barChart.style.display = 'block'
+        text.style.display = 'none'
+        toggleText.innerText = '>'
+      } else {
+        barChart.style.display = 'none'
+        text.style.display = 'block'
+        toggleText.innerText = '<'
+      }
+    })
+  </script>
+</body>
+</html>
