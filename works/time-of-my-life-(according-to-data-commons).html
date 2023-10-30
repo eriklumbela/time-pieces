@@ -8,21 +8,21 @@
 </head>
 <body>
   <div id="container">
-    <div id="bar-chart">
+    <div id="place-of-interest">
       <div id="life-spent"></div>
       <div id="life-left"></div>
     </div>
-    <div id="text">
+    <div id="info">
       <h3 id="series" class="right">/<a href="/index.html" title="series: time pieces">time pieces</a></h3>
       <h1 id="title">time of my life</h1>
-      <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span>, so today (<span id="today" class="data"></span>) I spent about <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. So, that means I have <span id="percentage-left" class="data left"></span> or <span id="years-left" class="data left"></span> years left, which is <span id="days-left" class="data left"></span> days.</p>
+      <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span>, so today (<span id="today" class="data"></span>) I have lived for approximately <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. This means I have <span id="percentage-left" class="data left"></span> or about <span id="years-left" class="data left"></span> years left, which is approximately <span id="days-left" class="data left"></span> days.</p>
       <p class="data medium">seconds I have left:</p>
       <h2 id="seconds-left" class="data">seconds-left</h2>
     </div>
     <div id="toggle"><p id="toggle-text">ℹ︎</p></div>
   </div>
   <script>
-    const  birthDate = Date.parse("18 dec 1985")
+    const birthDate = Date.parse("18 dec 1985")
     const birthDateElement = document.getElementById('birth-date')
     birthDateElement.innerText = new Date(birthDate).toLocaleDateString()
     const lifeExpectancyInYearsAccordingToDataCommons = 79.7
@@ -79,8 +79,8 @@
     const toggle = document.getElementById('toggle')
     const toggleText = document.getElementById('toggle-text')
     toggle.addEventListener('click', function(){
-      const barChart = document.getElementById('bar-chart')
-      const text = document.getElementById('text')
+      const barChart = document.getElementById('place-of-interest')
+      const text = document.getElementById('info')
       if (barChart.style.display === 'none'){
         barChart.style.display = 'block'
         text.style.display = 'none'

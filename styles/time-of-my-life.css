@@ -11,7 +11,7 @@ html, body {
   width: 100%;
   margin: auto;
 }
-#bar-chart {
+#place-of-interest {
   height: 100%;
 }
 #life-spent{
@@ -22,8 +22,9 @@ html, body {
   background-color: var(--life-left-color);
   color: var(--life-left-text-color);
 }
-#text {
+#info {
   width: 60%;
+  max-width: 500px;
   margin: auto;
   display: none;
 }
