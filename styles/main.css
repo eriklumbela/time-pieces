@@ -16,6 +16,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 p {
   padding-top: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: .05rem;
 }
 a {
   color: black;
@@ -31,6 +33,10 @@ ul {
 }
 .left {
   text-align: left;
+}
+.data {
+  font-style: italic;
+  text-decoration: dashed underline;
 }
 #info{
   display: none;

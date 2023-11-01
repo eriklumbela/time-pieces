@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>to the moon</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/moon.css">
+</head>
+<body>
+  <div id="container">
+    <div id="place-of-interest">
+      <div id="moon-background">
+        <svg id="moon" viewbox="0 0 500 500" >
+          <circle cx="-30%" cy="50%" r="30%" fill="white">
+            <animate
+              attributeName="cx"
+              from="-30%"
+              to="130%"
+              dur="5min"
+              repeatCount="1"
+            />
+          </circle>
+        </svg>
+      </div>
+    </div>
+    <div id="info">
+      <h1>to the moon</h1>
+      <p>At a walking pace of <span class="data"> <span id="walking-pace-in-kms">5,4</span> km's an hour</span>. It would take me approximately <span class="data"><span id="moons-to-supermoon">95</span> full moons</span> to reach the super moon (when the moon is nearest and brightest), or <span class="data"><span id="moons-to-eclipsed-moon">106</span> moons</span> to reach an eclipsed moon (when the moon is most distant).</p>
+      <p>This calculation assumes walking continously <span class="data">24 hours</span> each day, which is not realistic. Furthermore, the notion of walking to the moon is highly impractical and not achievable in reality.</p>
+    </div>
+  </div>
+  <script src="/scripts/main.js"></script>
+  <script>
+    const kmsToSuperMoon = 363_300 // shortest distance to sun, according to https://www.space.com/18145-how-far-is-the-moon.html
+    const kmsToEclipsedMoon = 405_500 // longest distance to sun, according to https://www.space.com/18145-how-far-is-the-moon.html
+    const walkingPaceInKmsPerHour = 5.4
+    const daysBetweenFullMoons = 29.53059 // see: https://eclipse.gsfc.nasa.gov/SEhelp/moonorbit.html#:~:text=The%20mean%20length%20of%20the,in%20orbit%20around%20the%20Sun.
+    const hrsBetweenFullMoons = daysBetweenFullMoons * 24
+    const moonsToSupermoon = kmsToSuperMoon / walkingPaceInKmsPerHour / hrsBetweenFullMoons
+    const moonsToEclipsedMoon = kmsToEclipsedMoon / walkingPaceInKmsPerHour / hrsBetweenFullMoons
+
+    document.getElementById('walking-pace-in-kms').innerText = walkingPaceInKmsPerHour.toLocaleString()
+    document.getElementById('moons-to-supermoon').innerText = Math.round(moonsToSupermoon)
+    document.getElementById('moons-to-eclipsed-moon').innerText = Math.round(moonsToEclipsedMoon)
+    ;
+  </script>
+</body>
+</html>
