@@ -60,5 +60,6 @@ if (document.getElementById('toggle-text')){
       info.style.display = 'block'
       toggleText.innerText = '⌘'
     }
+    scroll(0, 0)
   })
 }
