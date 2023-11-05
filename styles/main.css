@@ -23,7 +23,11 @@ a {
   color: black;
 }
 ul {
+  margin-top: 2rem;
   list-style-type: '-   ';
+}
+li {
+  margin: .5rem;
 }
 .right {
   text-align: right;
@@ -38,11 +42,12 @@ ul {
   font-style: italic;
   text-decoration: dashed underline;
 }
-#info{
+#text{
   display: none;
 }
-#place-of-interest {
+#visual {
   display: block;
+  padding-top: 5rem;
 }
 #toggle-text{
   text-align: right;

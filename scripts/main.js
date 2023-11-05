@@ -20,7 +20,7 @@ function htmlToElement(html) {
 
 function insertBreadCrump(){
   if (!document.getElementById('breadcrump')){
-    const container = document.getElementById('info')
+    const container = document.getElementById('text')
     if (container){
       const breadCrump = htmlToElement(`<h3 id="breadcrump" class="right">/<a href="/" title="series: time pieces">time pieces</a></h3>`)
       container.prepend(breadCrump)
@@ -30,8 +30,8 @@ function insertBreadCrump(){
 
 const about = '...'
 function insertToggle(){
-  if (!document.getElementById('toggle')){
-    if (document.getElementById('place-of-interest')){
+  if (!document.getElementById('toggle') && document.getElementById('visual') && document.getElementById('text')){
+    if (document.getElementById('visual')){
       const container = document.getElementById('container')
       const toggle = htmlToElement(`<div id="toggle"><p id="toggle-text">${about}</p></div>`)
       container.append(toggle)
@@ -50,14 +50,14 @@ appendNameToTitle()
 if (document.getElementById('toggle-text')){
   const toggleText = document.getElementById('toggle-text')
   toggleText.addEventListener('click', function(){
-    const placeOfInterest = document.getElementById('place-of-interest')
-    const info = document.getElementById('info')
+    const placeOfInterest = document.getElementById('visual')
+    const text = document.getElementById('text')
     if (placeOfInterest.style.display === 'none'){
       placeOfInterest.style.display = 'block'
-      info.style.display = 'none'
+      text.style.display = 'none'
       toggleText.innerText = about
     } else {placeOfInterest.style.display = 'none'
-      info.style.display = 'block'
+      text.style.display = 'block'
       toggleText.innerText = '⌘'
     }
     scroll(0, 0)

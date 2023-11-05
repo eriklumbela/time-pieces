@@ -1,89 +1,11 @@
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-}
-#container{
-  height: 100%;
-  width: 100%;
-  margin: auto;
-}
-#place-of-interest {
-  height: 100%;
+#visual {
+  height: 400px;
+  box-sizing: border-box;
 }
 #life-spent{
-  background-color: var(--life-spent-color);
-  color: var(--life-spent-text-color);
+  background-color: white;
+  border: 1px solid black;
 }
 #life-left{
-  background-color: var(--life-left-color);
-  color: var(--life-left-text-color);
-}
-#info {
-  width: 60%;
-  max-width: 500px;
-  margin: auto;
-  display: none;
-}
-
-#toggle p{
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  margin: 1rem;
-  padding: 5px;
-  font-size: 2rem;
-  color: var(--life-left-text-color);
-  background-color: var(--life-left-color);
-  cursor: pointer;
-}
-p {
-  padding: 5px 5px 0;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-h1 {
-  font-size: 3rem;
-}
-h2 {
-  font-size: 2.2rem;
-}
-.medium {
-  font-size: 2rem;
-}
-li{
-  list-style-type: upper-roman;
-  margin: 3rem 0;
-}
-span.nowrap {
-  white-space: nowrap;
-}
-a {
-  color: black;
-}
-.right {
-  text-align: right;
-}
-.data {
-  font-style: italic;
-}
-.spent {
-  padding: 0 5px;
-  background-color: var(--life-spent-color);
-  color: var(--life-spent-text-color);
-}
-.left {
-  background-color: var(--life-left-color);
-  color: var(--life-left-text-color);
-  padding: 0 5px;
-}
-:root {
-  --life-spent-color: white;
-  --life-spent-text-color: black;
-  --life-left-color: black;
-  --life-left-text-color: white;
+  background-color: black;
 }

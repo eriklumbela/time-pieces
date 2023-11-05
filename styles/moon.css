@@ -1,7 +1,6 @@
 
-#moon-background{
-  margin-top: 2rem;
-  height: 500px;
-  width: 500px;
+#moon-container{
+  width: 100%;
+  max-width: 500px;
   background-color: black;
 }

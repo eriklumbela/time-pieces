@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>since</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div id="container">
+    <div id="visual">
+      <p>1 minute starting from</p>
+      <h1 id="random-date">Wed Dec 18 1985 15:00:00 GMT+0100 (Central European Summer Time)</h1>
+      <svg id="circle"
+        height="200"
+        width="200"
+        >
+        <circle 
+          transform="rotate(-90,100,100)"
+          cx="50%"
+          cy="50%"
+          r="100"
+          fill="white"
+          stroke="black"
+          stroke-width="200"
+          stroke-dasharray="0 629"
+          >
+          <animate 
+            attributeName="stroke-dasharray"
+            from="0 629"
+            to="629 629"
+            dur="1min"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle
+          cx="50%"
+          cy="50%"
+          r="142"
+          stroke="white"
+          stroke-width="85"
+          fill-opacity="0"
+        />
+      </svg>
+    </div>
+  </div>
+  <script src="/scripts/main.js"></script>
+  <script src="/scripts/since.js"></script>
+</body>
+</html>

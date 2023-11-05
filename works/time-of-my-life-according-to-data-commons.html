@@ -4,23 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>time of my life (according to data commons)</title>
+  <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="/styles/time-of-my-life.css">
 </head>
 <body>
   <div id="container">
-    <div id="place-of-interest">
+    <div id="visual">
       <div id="life-spent"></div>
       <div id="life-left"></div>
     </div>
-    <div id="info">
-      <h3 id="series" class="right">/<a href="/index.html" title="series: time pieces">time pieces</a></h3>
+    <div id="text">
       <h1 id="title">time of my life</h1>
       <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span>, so today (<span id="today" class="data"></span>) I have lived for approximately <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. This means I have <span id="percentage-left" class="data left"></span> or about <span id="years-left" class="data left"></span> years left, which is approximately <span id="days-left" class="data left"></span> days.</p>
       <p class="data medium">seconds I have left:</p>
-      <h2 id="seconds-left" class="data">seconds-left</h2>
+      <h2 id="seconds-left">seconds-left</h2>
     </div>
-    <div id="toggle"><p id="toggle-text">ℹ︎</p></div>
   </div>
+  <script src="/scripts/main.js"></script>
   <script>
     const birthDate = Date.parse("18 dec 1985")
     const birthDateElement = document.getElementById('birth-date')
@@ -73,24 +73,7 @@
       const secondsLeft = document.getElementById('seconds-left')
       secondsLeft.innerText = Math.floor(lifeLeftInMilliseconds / 1000).toLocaleString()
     }
-    setInterval(setLifeLeftInSeconds, 1000)
-
-    // toggle
-    const toggle = document.getElementById('toggle')
-    const toggleText = document.getElementById('toggle-text')
-    toggle.addEventListener('click', function(){
-      const barChart = document.getElementById('place-of-interest')
-      const text = document.getElementById('info')
-      if (barChart.style.display === 'none'){
-        barChart.style.display = 'block'
-        text.style.display = 'none'
-        toggleText.innerText = '>'
-      } else {
-        barChart.style.display = 'none'
-        text.style.display = 'block'
-        toggleText.innerText = '<'
-      }
-    })
+    setInterval(setLifeLeftInSeconds, 1000);
   </script>
 </body>
 </html>
