@@ -22,7 +22,7 @@ function insertBreadCrump(){
   if (!document.getElementById('breadcrump')){
     const container = document.getElementById('text')
     if (container){
-      const breadCrump = htmlToElement(`<h3 id="breadcrump" class="right">/<a href="/" title="series: time pieces">time pieces</a></h3>`)
+      const breadCrump = htmlToElement(`<p id="breadcrump" class="right">/<a href="/" title="series: time pieces">time pieces</a></p>`)
       container.prepend(breadCrump)
     }
   }
