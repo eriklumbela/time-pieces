@@ -51,7 +51,7 @@ li {
 }
 #toggle-text{
   text-align: right;
-  padding-top: 5rem;
+  padding-top: 4rem;
   padding: 5rem 2rem 2rem 0;
   font-size: 2rem;
   color: black;
@@ -62,4 +62,16 @@ li {
   font-size: 1.5rem;
   font-style: bold;
   cursor: pointer;
+}
+#back, #forward {
+  position: fixed;
+  top: 85%;
+  /*font-size: 1.5rem;*/
+  cursor: pointer;
+}
+#back {
+  left: 1rem;
+}
+#forward {
+  right: 1rem;
 }

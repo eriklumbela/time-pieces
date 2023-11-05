@@ -39,8 +39,50 @@ function insertToggle(){
   }
 }
 
-// execute
+const works = [
+  "time-of-my-life.html", 
+  "the-next-ice-age.html",
+  "to-the-moon.html",
+  "quetta.html",
+  "since.html",
+  "one-hour-invisibly-slow-implosion.html",
+  "one-quarter-hour-medium-slow-implosion.html",
+  "one-minute-medium-implosion.html",
+  "one-second-faster-implosion.html",
+  "one-quarter-second-fast-implosion.html",
+  "one-hundred-milliseconds-stroboscopic-fast-implosion.html"
+]
 
+
+function addControlsToWorksPages(){
+  const text = document.getElementById('text')
+  const visual = document.getElementById('visual')
+  const container = document.getElementById('container')
+  if (text || visual){
+    const backElement = htmlToElement(`<p id="back"><</p>`)
+    const forwardElement = htmlToElement(`<p id="forward">></p>`)
+    container.prepend(forwardElement)
+    container.prepend(backElement)
+  }
+}
+
+function navigateToNextWork(next){
+  const url = document.URL
+  const currentPage = url.substring(url.lastIndexOf('/')+1)
+  let currentPageIndexInWorks = works.indexOf(currentPage)
+  if (currentPageIndexInWorks == 'undefined') {
+    location.href = '/'
+  } 
+
+    let newIndex = next? (currentPageIndexInWorks + 1) % works.length : (currentPageIndexInWorks - 1) % works.length
+    if (newIndex < 0) newIndex = works.length -1
+    const newPage = works[newIndex]
+    location.href = `/works/${newPage}`
+
+}
+
+// execute
+addControlsToWorksPages()
 insertBreadCrump()
 insertToggle()
 externalLinks()
@@ -63,3 +105,10 @@ if (document.getElementById('toggle-text')){
     scroll(0, 0)
   })
 }
+
+// controls
+//const back = document.getElementById('back')
+const forward = document.getElementById('forward')
+forward.addEventListener('click', () => {navigateToNextWork(true)})
+const back = document.getElementById('back')
+back.addEventListener('click', () => {navigateToNextWork(false)})
