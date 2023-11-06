@@ -5,9 +5,10 @@ function externalLinks() {
   }
 }
 
+const titleEnding = ' | erik lumbela'
 function appendNameToTitle() {
   if (!document.title.includes('erik lumbela')){
-    document.title += ' | erik lumbela'
+    document.title += titleEnding
   }
 }
 
@@ -18,23 +19,17 @@ function htmlToElement(html) {
   return template.content.firstChild
 }
 
-function insertBreadCrump(){
-  if (!document.getElementById('breadcrump')){
-    const container = document.getElementById('text')
-    if (container){
-      const breadCrump = htmlToElement(`<p id="breadcrump" class="right">/<a href="/" title="series: time pieces">time pieces</a></p>`)
-      container.prepend(breadCrump)
-    }
-  }
-}
-
 const about = '...'
 function insertToggle(){
-  if (!document.getElementById('toggle') && document.getElementById('visual') && document.getElementById('text')){
+  if (!document.getElementById('toggle-text') && document.getElementById('visual') && document.getElementById('text')){
     if (document.getElementById('visual')){
-      const container = document.getElementById('container')
-      const toggle = htmlToElement(`<div id="toggle"><p id="toggle-text">${about}</p></div>`)
-      container.append(toggle)
+      const titleControls = document.getElementById('title-controls')
+      titleControls.append(' ')
+      titleControls.append(htmlToElement(`<span id="toggle-text"></span>`))
+      const toggle = document.getElementById('toggle-text')
+      toggle.innerText = about
+    } else {
+
     }
   }
 }
@@ -59,10 +54,25 @@ function addControlsToWorksPages(){
   const visual = document.getElementById('visual')
   const container = document.getElementById('container')
   if (text || visual){
-    const backElement = htmlToElement(`<p id="back"><</p>`)
-    const forwardElement = htmlToElement(`<p id="forward">></p>`)
-    container.prepend(forwardElement)
-    container.prepend(backElement)
+    const controlsContainer =htmlToElement(`<div id="controls-container"></div`)
+    const navigationControls =htmlToElement(`<div id="navigation-controls"></div`)
+    const titleControls =htmlToElement(`<div id="title-controls"></div`)
+    const backElement = htmlToElement(`<span id="back"><</span>`)
+    const upElement = htmlToElement(`<a id="up" href="/">↖︎</a>`)
+    let title = document.title
+    title = title.replace(titleEnding, '').trim()
+    const titleElement = htmlToElement(`<span id="title-control">${title}</span>`)
+    const forwardElement = htmlToElement(`<span id="forward">></span>`)
+    navigationControls.append(backElement)
+    navigationControls.append('')
+    navigationControls.append(upElement)
+    navigationControls.append('')
+    navigationControls.append(forwardElement)
+    titleControls.append(titleElement)
+    controlsContainer.append(titleControls)
+    controlsContainer.append(navigationControls)
+    container.prepend(controlsContainer)
+
   }
 }
 
@@ -83,7 +93,6 @@ function navigateToNextWork(next){
 
 // execute
 addControlsToWorksPages()
-insertBreadCrump()
 insertToggle()
 externalLinks()
 appendNameToTitle()
@@ -92,13 +101,13 @@ appendNameToTitle()
 if (document.getElementById('toggle-text')){
   const toggleText = document.getElementById('toggle-text')
   toggleText.addEventListener('click', function(){
-    const placeOfInterest = document.getElementById('visual')
+    const visual = document.getElementById('visual')
     const text = document.getElementById('text')
-    if (placeOfInterest.style.display === 'none'){
-      placeOfInterest.style.display = 'block'
+    if (visual.style.display === 'none'){
+      visual.style.display = 'block'
       text.style.display = 'none'
       toggleText.innerText = about
-    } else {placeOfInterest.style.display = 'none'
+    } else {visual.style.display = 'none'
       text.style.display = 'block'
       toggleText.innerText = '⌘'
     }
@@ -107,7 +116,6 @@ if (document.getElementById('toggle-text')){
 }
 
 // controls
-//const back = document.getElementById('back')
 const forward = document.getElementById('forward')
 forward.addEventListener('click', () => {navigateToNextWork(true)})
 const back = document.getElementById('back')

@@ -40,38 +40,41 @@ li {
 }
 .data {
   font-style: italic;
-  text-decoration: dashed underline;
 }
 #text{
   display: none;
 }
 #visual {
   display: block;
-  padding-top: 5rem;
-}
-#toggle-text{
-  text-align: right;
-  padding-top: 4rem;
-  padding: 5rem 2rem 2rem 0;
-  font-size: 2rem;
-  color: black;
-  background-color: white;
-  cursor: pointer;
+  text-align: center;
 }
 #refresh {
   font-size: 1.5rem;
   font-style: bold;
   cursor: pointer;
 }
-#back, #forward {
-  position: fixed;
-  top: 85%;
-  /*font-size: 1.5rem;*/
+#controls-container{
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid black;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+#controls-container a{
+  text-decoration: none;
+}
+#navigation-controls{
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+#title-controls{
+  text-align: center;
+}
+#back, #forward, #up, #title-control, #toggle-text {
+  padding: 5px;
   cursor: pointer;
 }
-#back {
-  left: 1rem;
-}
-#forward {
-  right: 1rem;
+#title-control {
+  cursor: text;
 }
