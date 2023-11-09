@@ -41,9 +41,6 @@ li {
 .data {
   font-style: italic;
 }
-#text{
-  display: none;
-}
 #visual {
   display: block;
   text-align: center;

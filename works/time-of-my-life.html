@@ -6,13 +6,14 @@
   <title>time of my life</title>
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="/styles/time-of-my-life.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
   <div id="container">
-    <div id="visual">
+    <!--<div id="visual">
       <div id="life-spent"></div>
       <div id="life-left"></div>
-    </div>
+    </div>-->
     <div id="text">
       <h1 id="title">time of my life</h1>
       <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span>, so today (<span id="today" class="data"></span>) I have lived for approximately <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. This means I have <span id="percentage-left" class="data left"></span> or about <span id="years-left" class="data left"></span> years left, which is approximately <span id="days-left" class="data left"></span> days.</p>
@@ -52,9 +53,13 @@
     const lifeLeftExpectedPercentage = (lifeLeftExpectedFraction*100).toFixed(2)
 
     const lifeLeft = window.document.getElementById('life-left')
+    if (lifeLeft){
+      lifeLeft.style.height = `${lifeLeftExpectedPercentage}%`
+    }
     const lifeSpent = window.document.getElementById('life-spent')
-    lifeLeft.style.height = `${lifeLeftExpectedPercentage}%`
-    lifeSpent.style.height = `${100 - lifeLeftExpectedPercentage}%`
+    if (lifeSpent){
+      lifeSpent.style.height = `${lifeSpentExpectedPercentage}%`
+    }
 
     const percentageSpent = document.getElementById('percentage-spent')
     percentageSpent.innerText = `${lifeSpentExpectedPercentage}%`

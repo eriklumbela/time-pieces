@@ -49,7 +49,6 @@ const works = [
   "clock.html",
 ]
 
-
 function addControlsToWorksPages(){
   const text = document.getElementById('text')
   const visual = document.getElementById('visual')
@@ -127,5 +126,12 @@ if (forward){
 const back = document.getElementById('back')
 if (back) {
   back.addEventListener('click', () => {navigateToNextWork(false)})
+}
 
+// determine what element to show on load (visual or text)
+if (document.getElementById('visual')){
+  document.getElementById('visual').style.display = 'block'
+  document.getElementById('text').style.display = 'none'
+} else {
+  document.getElementById('text').style.display = 'block'
 }
