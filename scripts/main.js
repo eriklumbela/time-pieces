@@ -36,17 +36,12 @@ function insertToggle(){
 
 const works = [
   "time-of-my-life.html", 
+  "clock.html",
   "the-next-ice-age.html",
   "to-the-moon.html",
   "quetta.html",
   "since.html",
-  "one-hour-invisibly-slow-implosion.html",
-  "one-quarter-hour-medium-slow-implosion.html",
   "one-minute-medium-implosion.html",
-  "one-second-faster-implosion.html",
-  "one-quarter-second-fast-implosion.html",
-  "one-hundred-milliseconds-stroboscopic-fast-implosion.html",
-  "clock.html",
 ]
 
 function addControlsToWorksPages(){
@@ -131,7 +126,11 @@ if (back) {
 // determine what element to show on load (visual or text)
 if (document.getElementById('visual')){
   document.getElementById('visual').style.display = 'block'
-  document.getElementById('text').style.display = 'none'
+  if (document.getElementById('text')){
+    document.getElementById('text').style.display = 'none'
+  }
 } else {
-  document.getElementById('text').style.display = 'block'
+  if(document.getElementById('text')){
+    document.getElementById('text').style.display = 'block'
+  }
 }
