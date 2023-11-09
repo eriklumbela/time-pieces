@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>clock</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div id="visual">
+      <svg id="globals"
+        width="0"
+        height="0">
+        <defs>
+          <clipPath id="clip">
+            <circle cx="100" cy="100" r="100" />
+          </clipPath>
+          <linearGradient id="fill-gradient-12-hour-circle">
+            <stop id="fill-zero-12-hour-circle" offset="0%" stop-color="red" />
+            <stop id="fill-hundred-12-hour-circle" offset="100%" stop-color="yellow" />
+          </linearGradient>
+          <linearGradient id="fill-gradient-hour-circle">
+            <stop id="fill-zero-hour-circle" offset="0%" stop-color="red" />
+            <stop id="hundred-hour-circle" offset="100%" stop-color="yellow" />
+          </linearGradient>
+          <linearGradient id="fill-gradient-minute-circle">
+            <stop id="fill-zero-minute-circle" offset="0%" stop-color="red" />
+            <stop id="fill-hundred-minute-circle" offset="100%" stop-color="yellow" />
+          </linearGradient>
+          <linearGradient id="stroke-gradient-12-hour-circle">
+            <stop id="stroke-zero-12-hour-circle" offset="0%" stop-color="red" />
+            <stop id="stroke-hundred-12-hour-circle" offset="100%" stop-color="yellow" />
+          </linearGradient>
+          <linearGradient id="stroke-gradient-hour-circle">
+            <stop id="stroke-zero-hour-circle" offset="0%" stop-color="red" />
+            <stop id="hundred-hour-circle" offset="100%" stop-color="yellow" />
+          </linearGradient>
+          <linearGradient id="stroke-gradient-minute-circle">
+            <stop id="stroke-zero-minute-circle" offset="0%" stop-color="red" />
+            <stop id="stroke-hundred-minute-circle" offset="100%" stop-color="yellow" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <svg id="12hour"
+        height="200"
+        width="200"
+        >
+        <circle id="12-hour-circle"
+          transform="rotate(-90,100,100)"
+          cx="50%"
+          cy="50%"
+          r="100"
+          fill="transparent"
+          stroke="green"
+          stroke-width="200"
+          stroke-dasharray="0 629"
+          clip-path="url(#clip)"
+        />
+      </svg>
+      <svg id="hours"
+        height="200"
+        width="200"
+        >
+        <circle id="hour-circle"
+          transform="rotate(-90,100,100)"
+          cx="50%"
+          cy="50%"
+          r="100"
+          fill="transparent"
+          stroke="yellow"
+          stroke-width="200"
+          stroke-dasharray="0 629"
+          clip-path="url(#clip)"
+        />
+      </svg>
+      <svg id="minute"
+        height="200"
+        width="200"
+        >
+        <circle id="minute-circle"
+          transform="rotate(-90,100,100)"
+          cx="50%"
+          cy="50%"
+          r="100"
+          fill="transparent"
+          stroke="red"
+          stroke-width="200"
+          stroke-dasharray="0 629"
+          clip-path="url(#clip)"
+        />
+      </svg>
+    </div>
+  </div>
+  <script src="/scripts/main.js"></script>
+  <script src="/scripts/randomColor.js"></script>
+  <script>
+    function getSecondsToday() {
+      let now = new Date();
+      let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      let diff = now - today;
+      return Math.round(diff / 1000);
+    }    
+    
+    const daySecondsPast = getSecondsToday()
+
+    function fromCircleToClock(timeUnitInSeconds, circleId){
+      const targetElementId = '#' + circleId
+
+      // set colors
+      const hourColors = randomColor({count: 4})
+      $(`#fill-zero-${circleId}`).attr('stop-color', hourColors[0])
+      $(`#fill-hundred-${circleId}`).attr('stop-color', hourColors[1])
+      $(`#stroke-zero-${circleId}`).attr('stop-color', hourColors[2])
+      $(`#stroke-hundred-${circleId}`).attr('stop-color', hourColors[3])
+      if (Math.random()>0.5){
+        $(targetElementId).attr('fill', `url(#fill-gradient-${circleId})`)
+      } else {
+        $(targetElementId).attr('fill', `${hourColors[0]}`)
+      }
+      if (Math.random()>0.5){
+        $(targetElementId).attr('stroke', `url(#stroke-gradient-${circleId})`)
+      } else {
+        $(targetElementId).attr('stroke', `${hourColors[2]}`)
+      }
+
+      // set animation
+      const remainderInSeconds = (daySecondsPast % timeUnitInSeconds)
+      const fractionOfRemainderAndTimeUnit = remainderInSeconds/timeUnitInSeconds
+      $(targetElementId).html(`
+            <animate id="animation${timeUnitInSeconds}"
+              attributeName="stroke-dasharray"
+              from="${fractionOfRemainderAndTimeUnit*629} 629"
+              to="629 629"
+              dur="${(1-fractionOfRemainderAndTimeUnit)*timeUnitInSeconds}s"
+              fill="freeze"
+            />
+            <animate
+              attributeName="stroke-dasharray"
+              begin="animation${timeUnitInSeconds}.end"
+              from="0 629"
+              to="629 629"
+              dur="${timeUnitInSeconds}s"
+              repeatCount="indefinite"
+            />`)
+    }
+
+    fromCircleToClock(12*3600, '12-hour-circle')
+    fromCircleToClock(3600, 'hour-circle')
+    fromCircleToClock(60, 'minute-circle')
+  </script>
+</body>
+</html>

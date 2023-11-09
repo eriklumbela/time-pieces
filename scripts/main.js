@@ -45,7 +45,8 @@ const works = [
   "one-minute-medium-implosion.html",
   "one-second-faster-implosion.html",
   "one-quarter-second-fast-implosion.html",
-  "one-hundred-milliseconds-stroboscopic-fast-implosion.html"
+  "one-hundred-milliseconds-stroboscopic-fast-implosion.html",
+  "clock.html",
 ]
 
 
@@ -57,16 +58,19 @@ function addControlsToWorksPages(){
     const controlsContainer =htmlToElement(`<div id="controls-container"></div`)
     const navigationControls =htmlToElement(`<div id="navigation-controls"></div`)
     const titleControls =htmlToElement(`<div id="title-controls"></div`)
-    const backElement = htmlToElement(`<span id="back"><</span>`)
+    const backElement = htmlToElement(`<a id="back"><</a>`)
     const upElement = htmlToElement(`<a id="up" href="/">↖︎</a>`)
     let title = document.title
     title = title.replace(titleEnding, '').trim()
     const titleElement = htmlToElement(`<span id="title-control">${title}</span>`)
-    const forwardElement = htmlToElement(`<span id="forward">></span>`)
+    const forwardElement = htmlToElement(`<a id="forward">></a>`)
     navigationControls.append(backElement)
-    navigationControls.append('')
     navigationControls.append(upElement)
-    navigationControls.append('')
+    const pagesThatRequireRefreshButton = ['the next ice age', 'since', 'clock']
+    if (pagesThatRequireRefreshButton.includes(title)){
+      const refreshElement = htmlToElement(`<a id="refresh-work" href>↻</a>`)
+      navigationControls.append(refreshElement)
+    }
     navigationControls.append(forwardElement)
     titleControls.append(titleElement)
     controlsContainer.append(titleControls)
@@ -117,6 +121,11 @@ if (document.getElementById('toggle-text')){
 
 // controls
 const forward = document.getElementById('forward')
-forward.addEventListener('click', () => {navigateToNextWork(true)})
+if (forward){
+  forward.addEventListener('click', () => {navigateToNextWork(true)})
+}
 const back = document.getElementById('back')
-back.addEventListener('click', () => {navigateToNextWork(false)})
+if (back) {
+  back.addEventListener('click', () => {navigateToNextWork(false)})
+
+}

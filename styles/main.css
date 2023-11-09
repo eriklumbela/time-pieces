@@ -64,14 +64,16 @@ li {
   text-decoration: none;
 }
 #navigation-controls{
+  margin: auto;
+  width: 300px;
   text-align: center;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 #title-controls{
   text-align: center;
 }
-#back, #forward, #up, #title-control, #toggle-text {
+#back, #forward, #up, #title-control, #toggle-text, #refresh-work {
   padding: 5px;
   cursor: pointer;
 }
