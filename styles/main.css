@@ -49,6 +49,7 @@ li {
   font-size: 1.5rem;
   font-style: bold;
   cursor: pointer;
+  padding-bottom: 2rem;
 }
 #controls-container{
   padding: 1rem;
