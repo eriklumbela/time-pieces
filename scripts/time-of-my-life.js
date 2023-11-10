@@ -44,7 +44,7 @@ percentageLeft.innerText = `${round(lifeLeftExpectedPercentage, 2).toLocaleStrin
 const daysLeft = document.getElementById('days-left')
 daysLeft.innerText = expectedDaysLeft.toLocaleString()
 const yearsLeft = document.getElementById('years-left')
-yearsLeft.innerText = Math.round(expectedDaysLeft / 365.25)
+yearsLeft.innerText = round(expectedDaysLeft / 365.25, 2).toLocaleString()
 
 // life left in seconds
 const interval = 1000
