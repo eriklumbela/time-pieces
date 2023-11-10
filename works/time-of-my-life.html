@@ -16,7 +16,7 @@
     </div>-->
     <div id="text">
       <h1 id="title">time of my life</h1>
-      <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span>, so today (<span id="today" class="data"></span>) I have lived for approximately <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. This means I have <span id="percentage-left" class="data left"></span> or about <span id="years-left" class="data left"></span> years left, which is approximately <span id="days-left" class="data left"></span> days.</p>
+      <p>According to <span class="nowrap"><i>Data Commons</i></span> (<a href="https://datacommons.org/explore/#q=life+expectancy+netherlands+male" target="_blank">Netherlands - Male Life Expectancy</a>) <a href="https://www.eriklumbela.com" target="_blank" title="Erik Lumbela">I</a> am expected to die when I'm about <span class="data" id="life-expectancy-years"></span> years old. I was born on <span class="data" id="birth-date"></span>, so today (<span id="today" class="data"></span>) I have lived for <span id="days-spent" class="data spent"></span> days, which is <span id="percentage-spent" class="data spent"></span> of my life. This means I have <span id="percentage-left" class="data left"></span> or about <span id="years-left" class="data left"></span> years left, which is <span id="days-left" class="data left"></span> days.</p>
       <p class="data medium">seconds I have left:</p>
       <h2 id="seconds-left"></h2>
     </div>
@@ -29,13 +29,13 @@
     const lifeExpectancyInYearsAccordingToDataCommons = 79.7
 
     const lifeExpectancyYearsElement = document.getElementById('life-expectancy-years')
-    lifeExpectancyYearsElement.innerText = lifeExpectancyInYearsAccordingToDataCommons
+    lifeExpectancyYearsElement.innerText = lifeExpectancyInYearsAccordingToDataCommons.toLocaleString()
     const lifeExpectancyInMillisecondsAccordingToDataCommons = lifeExpectancyInYearsAccordingToDataCommons * 365.25 * 24 * 60 * 60 * 1000
     const deathDateAccordingToDataCommons = birthDate + lifeExpectancyInMillisecondsAccordingToDataCommons
 
     const todaysDate = new Date(Date.now()).toLocaleDateString()
     const today = document.getElementById('today')
-    today.innerText = todaysDate
+    today.innerText = todaysDate.toLocaleString()
 
     const millisecondsSpent = Date.now()-birthDate
     const daysSpent = Math.round(millisecondsSpent / 1000 / 60 / 60 / 24)
@@ -47,10 +47,10 @@
     const expectedDaysLeft = Math.round(lifeLeftInMilliseconds / 1000 / 60 / 60 / 24)
     const lifeSpentExpectedFraction = millisecondsSpent/expectedTotalLifeInMilliseconds
 
-    const lifeSpentExpectedPercentage = (lifeSpentExpectedFraction*100).toFixed(2)
+    const lifeSpentExpectedPercentage = (lifeSpentExpectedFraction*100)
 
     const lifeLeftExpectedFraction = 1 - lifeSpentExpectedFraction
-    const lifeLeftExpectedPercentage = (lifeLeftExpectedFraction*100).toFixed(2)
+    const lifeLeftExpectedPercentage = (lifeLeftExpectedFraction*100)
 
     const lifeLeft = window.document.getElementById('life-left')
     if (lifeLeft){
@@ -62,13 +62,13 @@
     }
 
     const percentageSpent = document.getElementById('percentage-spent')
-    percentageSpent.innerText = `${lifeSpentExpectedPercentage}%`
+    percentageSpent.innerText = `${lifeSpentExpectedPercentage.toLocaleString()}%`
     const percentageLeft = document.getElementById('percentage-left')
-    percentageLeft.innerText = `${lifeLeftExpectedPercentage}%`
+    percentageLeft.innerText = `${lifeLeftExpectedPercentage.toLocaleString()}%`
     const daysLeft = document.getElementById('days-left')
     daysLeft.innerText = expectedDaysLeft.toLocaleString()
     const yearsLeft = document.getElementById('years-left')
-    yearsLeft.innerText = (expectedDaysLeft / 365.25).toFixed(2)
+    yearsLeft.innerText = Math.round(expectedDaysLeft / 365.25)
 
     // life left in seconds
     const interval = 1000
