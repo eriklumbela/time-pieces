@@ -77,3 +77,7 @@ li {
 #title-control {
   cursor: text;
 }
+#toggle-text {
+  text-decoration: solid underline;
+  font-size: 0.8rem;
+}

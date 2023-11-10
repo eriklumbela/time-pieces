@@ -23,7 +23,8 @@ function round(number, decimals){
   return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
-const about = '...'
+const text = 'text'
+const visual = 'visual'
 function insertToggle(){
   if (!document.getElementById('toggle-text') && document.getElementById('visual') && document.getElementById('text')){
     if (document.getElementById('visual')){
@@ -31,7 +32,7 @@ function insertToggle(){
       titleControls.append(' ')
       titleControls.append(htmlToElement(`<span id="toggle-text"></span>`))
       const toggle = document.getElementById('toggle-text')
-      toggle.innerText = about
+      toggle.innerText = text
     } else {
 
     }
@@ -103,15 +104,15 @@ appendNameToTitle()
 if (document.getElementById('toggle-text')){
   const toggleText = document.getElementById('toggle-text')
   toggleText.addEventListener('click', function(){
-    const visual = document.getElementById('visual')
-    const text = document.getElementById('text')
-    if (visual.style.display === 'none'){
-      visual.style.display = 'block'
-      text.style.display = 'none'
-      toggleText.innerText = about
-    } else {visual.style.display = 'none'
-      text.style.display = 'block'
-      toggleText.innerText = '⌘'
+    const visualElement = document.getElementById('visual')
+    const textElement = document.getElementById('text')
+    if (visualElement.style.display === 'none'){
+      visualElement.style.display = 'block'
+      textElement.style.display = 'none'
+      toggleText.innerText = text
+    } else {visualElement.style.display = 'none'
+      textElement.style.display = 'block'
+      toggleText.innerText = visual
     }
     scroll(0, 0)
   })
