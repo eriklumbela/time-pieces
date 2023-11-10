@@ -19,6 +19,10 @@ function htmlToElement(html) {
   return template.content.firstChild
 }
 
+function round(number, decimals){
+  return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals)
+}
+
 const about = '...'
 function insertToggle(){
   if (!document.getElementById('toggle-text') && document.getElementById('visual') && document.getElementById('text')){
