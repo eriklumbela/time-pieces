@@ -44,10 +44,10 @@ const works = [
   "clock.html",
   "the-next-ice-age.html",
   "to-the-moon.html",
-  "quetta.html",
+  "quetta-second.html",
   "since.html",
   "the-longest-rally.html",
-  "one-minute-medium-implosion.html",
+  "medium-slow-implosion.html",
 ]
 
 function addControlsToWorksPages(){
