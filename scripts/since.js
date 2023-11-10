@@ -6,6 +6,15 @@ function randomDateGenerator(start, end, startHour, endHour) {
   return date;
 }
 
+function setCircleColors(){
+  const randomColors = randomColor({count: 4})
+  const circleBackground = document.getElementById('circle-background')
+  circleBackground.setAttribute('fill', randomColors[0])
+  const circleForeground = document.getElementById('circle-foreground')
+  circleForeground.setAttribute('fill', randomColors[1])
+
+}
+
 
 const randomDateElement = document.getElementById('random-date')
 function setRandomDate(){
@@ -14,7 +23,10 @@ function setRandomDate(){
   randomDateElement.innerText = randomDate.toLocaleString()
 }
 
+setRandomDate()
+
 setInterval(() => {
   setRandomDate()
+  setCircleColors()
 }, 60000);
-setRandomDate()
+setCircleColors()
