@@ -45,7 +45,7 @@ function setNumbers(){
   setElementsOfClassToRandomValueOfArray(classYearsToIceAge, optionsYearsToIceAge)
   setElementsOfClassToRandomValueOfArray(classYearsLifeExpectancy, optionsYearsLifeExpectancy)
   setLifetimesToIceAge()
-  setLifetimeIcons()
+  //setLifetimeIcons()
 }
 
 setNumbers()

@@ -54,4 +54,5 @@ function setLifeLeftInSeconds() {
   const secondsLeft = document.getElementById('seconds-left')
   secondsLeft.innerText = Math.floor(lifeLeftInMilliseconds / 1000).toLocaleString()
 }
+setLifeLeftInSeconds()
 setInterval(setLifeLeftInSeconds, 1000);
