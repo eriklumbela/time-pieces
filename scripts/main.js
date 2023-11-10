@@ -46,6 +46,7 @@ const works = [
   "to-the-moon.html",
   "quetta.html",
   "since.html",
+  "the-longest-rally.html",
   "one-minute-medium-implosion.html",
 ]
 

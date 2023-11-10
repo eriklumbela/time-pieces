@@ -82,3 +82,7 @@ li {
   text-decoration: solid underline;
   font-size: 0.8rem;
 }
+.quote {
+  font-style: italic;
+  padding: 1rem;
+}
