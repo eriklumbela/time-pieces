@@ -24,9 +24,9 @@ function setRandomDate(){
 }
 
 setRandomDate()
+setCircleColors()
 
 setInterval(() => {
   setRandomDate()
   setCircleColors()
 }, 60000);
-setCircleColors()
