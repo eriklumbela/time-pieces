@@ -62,7 +62,7 @@ li {
 }
 #navigation-controls{
   margin: auto;
-  width: 200px;
+  max-width: 300px;
   text-align: center;
   display: flex;
   justify-content: space-between;
