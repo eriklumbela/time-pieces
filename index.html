@@ -7,24 +7,9 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div id="container">
-    <p id="author" class="right">/<a href="https://www.eriklumbela.com" title="erik lumbela">erik lumbela</a></p>
-    <h1>time pieces</h1>
-    <ul id="work-list">
-    </ul>
-  </div>
   <script src="/scripts/main.js"></script>
   <script>
-    function addLisForWorks(){
-      console.log('hi');
-      console.log(works);
-      works.forEach(work => {
-        const workTitle = work.replaceAll('-', ' ').replace('.html', '')
-        const li = htmlToElement(`<li><a href="/works/${work}" title="${workTitle}">${workTitle}</a></li>`)
-        document.getElementById('work-list').appendChild(li)
-      });
-    }
-    addLisForWorks()
+    window.location.href = `/works/${works[Math.floor(Math.random() * works.length)]}`
   </script>
 </body>
 </html>

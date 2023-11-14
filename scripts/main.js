@@ -5,8 +5,14 @@ function externalLinks() {
   }
 }
 
-const titleEnding = ' | erik lumbela'
-function appendNameToTitle() {
+const titleEnding = ' (time pieces) | erik lumbela'
+function addDescriptionAppendNameAndSeriesToTitle() {
+  // add document title as page description
+  const meta = document.createElement('meta')
+  meta.name = 'description'
+  meta.content = `'${document.title}' is an art work by erik lumbela. It is part of the time pieces series.`
+  document.getElementsByTagName('head')[0].appendChild(meta)
+
   if (!document.title.includes('erik lumbela')){
     document.title += titleEnding
   }
@@ -59,13 +65,11 @@ function addControlsToWorksPages(){
     const navigationControls =htmlToElement(`<div id="navigation-controls"></div`)
     const titleControls =htmlToElement(`<div id="title-controls"></div`)
     const backElement = htmlToElement(`<a id="back"><</a>`)
-    const upElement = htmlToElement(`<a id="up" href="/">↖︎</a>`)
     let title = document.title
     title = title.replace(titleEnding, '').trim()
     const titleElement = htmlToElement(`<span id="title-control">${title}</span>`)
     const forwardElement = htmlToElement(`<a id="forward">></a>`)
     navigationControls.append(backElement)
-    navigationControls.append(upElement)
     const pagesThatRequireRefreshButton = ['the next ice age', 'since', 'clock']
     if (pagesThatRequireRefreshButton.includes(title)){
       const refreshElement = htmlToElement(`<a id="refresh-work" href>↻</a>`)
@@ -76,7 +80,9 @@ function addControlsToWorksPages(){
     controlsContainer.append(titleControls)
     controlsContainer.append(navigationControls)
     container.prepend(controlsContainer)
-
+    
+    const authorElement = htmlToElement(`<div id="author"><a href="https://www.eriklumbela.com">↖︎ erik lumbela </a></div>`)
+    container.append(authorElement)
   }
 }
 
@@ -99,7 +105,7 @@ function navigateToNextWork(next){
 addControlsToWorksPages()
 insertToggle()
 externalLinks()
-appendNameToTitle()
+addDescriptionAppendNameAndSeriesToTitle()
 
 // toggle
 if (document.getElementById('toggle-text')){

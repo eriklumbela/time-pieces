@@ -10,6 +10,10 @@ html, body {
   width: 70%;
   max-width: 500px;
   margin: auto;
+  margin-bottom: 100px;
+}
+#text, #visual {
+  margin-bottom: 300px;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -71,7 +75,7 @@ li {
 #title-controls{
   text-align: center;
 }
-#back, #forward, #up, #title-control, #toggle-text, #refresh-work {
+#back, #forward, #title-control, #toggle-text, #refresh-work {
   padding: 5px;
   cursor: pointer;
 }
@@ -81,6 +85,10 @@ li {
 #toggle-text {
   text-decoration: solid underline;
   font-size: 0.8rem;
+}
+#author {
+  font-size: 0.75rem;
+  
 }
 .quote {
   font-style: italic;
