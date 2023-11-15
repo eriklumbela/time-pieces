@@ -6,11 +6,8 @@ function randomDateGenerator(start, end, startHour, endHour) {
   return date;
 }
 
-function setCircleColors(){
-  const circleBackground = document.getElementById('circle-background')
+function setCircleColor(){
   const circleForeground = document.getElementById('circle-foreground')
-  const circleForegroundFill = circleForeground.getAttribute('fill')
-  circleBackground.setAttribute('fill', circleForegroundFill)
   circleForeground.setAttribute('fill', randomColor())
 }
 
@@ -23,10 +20,4 @@ function setRandomDate(){
 }
 
 setRandomDate()
-setCircleColors()
-
-setInterval(() => {
-  document.getElementById('circle-foreground-animation').beginElement()
-  setRandomDate()
-  setCircleColors()
-}, 60000);
+setCircleColor()
