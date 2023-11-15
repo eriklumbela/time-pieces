@@ -5,6 +5,22 @@ function externalLinks() {
   }
 }
 
+function addGoogleAnalyticsTagToHead() {
+  const googleAnalyticsId = 'G-8YDT8C2D5Z'
+  const script = document.createElement('script')
+  script.async = true
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`
+  const script2 = document.createElement('script')
+  script2.innerHTML = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${googleAnalyticsId}');`
+  document.getElementsByTagName('head')[0].appendChild(script)
+  document.getElementsByTagName('head')[0].appendChild(script2)
+}
+
 const titleEnding = ' (time pieces) | erik lumbela'
 function addDescriptionAppendNameAndSeriesToTitle() {
   // add document title as page description
@@ -105,6 +121,7 @@ function navigateToNextWork(next){
 addControlsToWorksPages()
 insertToggle()
 externalLinks()
+addGoogleAnalyticsTagToHead()
 addDescriptionAppendNameAndSeriesToTitle()
 
 // toggle
